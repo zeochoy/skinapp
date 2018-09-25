@@ -1,0 +1,16 @@
+name: skinapp
+channels:
+  - pytorch
+  - defaults
+dependencies:
+  - python>=3.6
+  - pip
+  - cython>=0.28
+  - pyyaml
+  - flask==0.12.2
+  - torchvision=0.2
+  - pytorch=0.3.1
+  - pip:
+    - opencv-python>=3.4
+    - gunicorn>=19.8
+prefix: /Users/ZeoChoy/anaconda/envs/skinapp
