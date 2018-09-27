@@ -17,7 +17,7 @@ $(document).ready(function(){
             var fileReader = new FileReader();
             fileReader.onload = function(event) {
                 $('.img-hidden').html(
-                    `<img class="rounded border loaded-img" id='loaded-img' src='${event.target.result}' height="300" width="300"/>`
+                    `<img class="rounded border loaded-img shadow" id='loaded-img' src='${event.target.result}' height="300" width="300"/>`
                     );
                 var c = document.getElementById("img-canvas");
                 var ctx = c.getContext("2d");
@@ -38,7 +38,7 @@ $(document).ready(function(){
         }
 
         // remove active class
-        $(".sample_img").removeClass("active");
+        $(".sample_img").removeClass("active-img");
 
         var imageData = new FormData($(this)[0]);
         console.log($(this)[0]);
@@ -89,8 +89,8 @@ $(document).ready(function(){
     $(".sample_img").click(function() {
 
         // add active class to clicked picture
-        $(".sample_img").removeClass("active");
-        $(this).addClass("active");
+        $(".sample_img").removeClass("active-img");
+        $(this).addClass("active-img");
 
 
         // grab image url
@@ -109,7 +109,7 @@ $(document).ready(function(){
             reader.onload =  function(e){
                 // console.log('DataURL:', e.target.result);
                 $('.img-hidden').html(
-                    `<img class="rounded border loaded-img" id='loaded-img' src='${e.target.result}' height="300" width="300"/>`
+                    `<img class="rounded border loaded-img shadow" id='loaded-img' src='${e.target.result}' height="300" width="300"/>`
                     );
                 //var c = document.getElementById("img-canvas");
                 //var ctx = c.getContext("2d");

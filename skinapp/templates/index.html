@@ -30,35 +30,49 @@
       </form>
     </nav>
 
-    <div class="container-fluid h-100">
-      <div class="row panel">
+    <div class="container-fluid" style="margin-top:60px">
+      <div class="row">
         <!--left panel-->
-        <div class="col-sm-6 h-100 sticky-top py-5" id="left">
-          <label class="col-form-label" for="input">1. Sample Images</label>
-          <medium class="form-text text-muted">Click on sample image to try.</medium><br>
-          {% for img_src in samples %}
-          <img class="sample_img sample-img rounded border" src="{{img_src[8:]}}" height="165" width="165"/>
-          {% endfor %}
-
-          <hr/>
-
-          <label class="col-form-label" for="inputFile">2. Upload</label>
-          <medium class="form-text text-muted">Upload your own image (jpg or png).</medium><br>
-          <form id="predict" method="post" enctype="multipart/form-data" action="upload">
-              <input class="form-control-file" id="img" name="file" type="file" accept=".jpeg,.jpg,.png"/>
+        <div class="col-sm-6 sticky-top py-5" id="left">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active show" data-toggle="tab" href="#sample-tab">Sample Images</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#upload-tab">Upload</a>
+            </li>
+          </ul>
+          <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active show" id="sample-tab">
               <br>
-              <input class="btn btn-primary" type="submit" value="Submit"/>
-          </form>
+              <medium class="form-text text-muted">Click on sample image to try.</medium><br>
+              {% for img_src in samples %}
+              <img class="sample_img sample-img rounded border" src="{{img_src[8:]}}" height="165" width="165"/>
+              {% endfor %}
+            </div>
+            <div class="tab-pane fade" id="upload-tab">
+              <br>
+              <medium class="form-text text-muted">Upload your own image (jpg or png).</medium><br>
+              <form id="predict" method="post" enctype="multipart/form-data" action="upload">
+                  <input class="form-control-file" id="img" name="file" type="file" accept=".jpeg,.jpg,.png"/>
+                  <br>
+                  <input class="btn btn-primary" type="submit" value="Submit"/>
+              </form>
+            </div>
+          </div>
+
+          <div class="alert alert-dismissible alert-secondary shadow-sm p-3 mb-5 bg-white rounded"  style="margin-top:50px; max-width:650px">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Disclamier:</strong><br>Uploaded images are the responsibility of their respective parties.<br>This tool is for demostration only. It does not replace professional medical advice.</a>
+          </div>
         </div>
+
         <!--right panel-->
         <div class="col-sm-6 py-5">
           <div class="row">
-
-
             <div class="col-sm-6 py-5">
               <div class="status-area">
                 <div class="img-hidden"></div>
-                <!--<canvas id="img-canvas" width="300" height="300">-->
               </div>
             </div>
 
@@ -67,19 +81,10 @@
                 <span class="status"></span>
               </div>
             </div>
-
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <strong>Disclamier: </strong>Uploaded images are the responsibility of their respective parties. This tool is for demostration of PyTorch + FastAI + Flask implementation only. It does not replace professional medical advice.
-            </div>
-
           </div>
         </div>
-
+        <!--right panel-->
       </div>
     </div>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   </body>
 </html>
