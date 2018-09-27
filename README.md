@@ -12,11 +12,6 @@ balanced | 891+222 | 891+222
 ResNext50 (pretrained)
 Fine-tuned using Fastai library with data augmentation.
 
-/ | Benign | Malignant
-------------- | ------------- | -------------
-original | 5365+1341 | 891+222
-balanced | 891+222 | 891+222
-
 #### Training Stat:
 
 / | Accuracy | Precision | ROC AUC | F1
