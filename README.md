@@ -37,7 +37,7 @@ malignant | 39 | 183
 3. Open the terminal, run `python run.py`
 4. View at http://localhost:5000.
 
-## Acknowledge
+## Acknowledgement
 * https://github.com/daveluo/cocoapp
 * http://forums.fast.ai/t/exposing-dl-models-as-apis-microservices/13477/9
 * https://github.com/fastai/fastai
