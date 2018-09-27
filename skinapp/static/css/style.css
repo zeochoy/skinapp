@@ -1,38 +1,9 @@
 .active {
-    outline: 5px solid #33CC00;
+    outline: 5px solid #007bff;
     outline-offset:-5px;
 }
 
-.head-wrap {
-    text-align:center;
-}
-
-#bbox-container {
-    background-color: #E0E0E0;
-}
-
-#bbox-slider .slider-selection {
-    background: #BABABA;
-}
-
-.slider {
-    padding: 5px;
-    font-size:10px;
-    font-weight:400;
-}
-
-form {
-    padding:20px 0px;
-    text-align:center;
-}
-
 #img {
-    display:inline-block;
-}
-
-input[type="submit"] {
-    border-radius:5px;
-    border:1px solid #eea236;
 }
 
 .info-area {
@@ -41,15 +12,24 @@ input[type="submit"] {
 }
 
 .loaded-img {
-    padding:10px;
+    padding:5px;
     max-width:400px;
     max-height:400px;
     border-radius:5px;
-    border:2px solid #d3d3d3;
+    border:2px solid #007bff;
+}
+
+.sample-img {
+    padding:0px;
+}
+
+
+.panel {
+    margin:30px 0px;
 }
 
 .status-area {
-    margin:20px 0px;
+    margin:50px 0px;
 }
 
 .result {
@@ -58,8 +38,15 @@ input[type="submit"] {
     font-weight:700;
 }
 
+.result-content {
+    display:block;
+    font-size:15px;
+    font-weight:700;
+}
+
 .eval {
     font-size:15px;
+    color:#17a2b8;
 }
 
 .success {
@@ -67,7 +54,7 @@ input[type="submit"] {
 }
 
 .failure {
-    color:#ff0000;
+    color:#dc3545;
 }
 
 .confidence {
@@ -75,22 +62,9 @@ input[type="submit"] {
     font-style:italic;
 }
 
-footer {
-    bottom:0;
-    width:100%;
-}
-
 .references.container {
     padding:20px 0px;
     text-align:center;
-}
-
-.view-container {
-    display:block;
-}
-
-.view-container a {
-    text-decoration:none;
 }
 
 @media (max-width:447px) {

@@ -1,69 +1,85 @@
-<!DOCTYPE HTML>
+<!doctype html>
 <html lang="en">
-    <head>
-        <title>Skin App</title>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="static/css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="static/css/bootstrap-slider.css"/>
-        <link rel="stylesheet" href="static/css/style.css"/>
-        <script type="text/javascript" src="static/js/jquery.min.js"></script>
-        <script type="text/javascript" src="static/js/bootstrap-slider.min.js"></script>
-        <script type="text/javascript" src="static/js/app.js"></script>
-    </head>
-    <body>
-        <header>
-            <div class="head-wrap">
-                <h1>Skinapp - Skin Lesion Detection Flask App</h1>
-            </div>
-        </header>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <div class="container">
-            <div class="col-sm-12">
-                <h3>Select sample image:</h3>
-                <br>
-                <div class="row">
-                    {% for img_src in samples %}
-                    <div class="col-sm-3">
-                        <p><img class="sample_img" src="{{img_src[8:]}}" height="150" width="150"/></p>
-                    </div>
-                    {% endfor %}
-                </div>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.3/materia/bootstrap.min.css" rel="stylesheet" integrity="sha384-5bFGNjwF8onKXzNbIcKR8ABhxicw+SC1sjTh6vhSbIbtVgUuVTm2qBZ4AaHc7Xr9" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/style.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script type="text/javascript" src="static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="static/js/app.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <title>Skinapp</title>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+      <a class="navbar-brand" href="/">Skinapp</a>
+      <span class="navbar-text py-0">Skin Lesion Detection Flask App Demo</span>
+      <div class="collapse navbar-collapse my-2 my-lg-0" id="navbarColor02"></div>
+      <form class="form-inline my-2 my-lg-0">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="http://github.com/zeochoy/skinapp"><i class="fab fa-github"></i> Github</a>
+          </li>
+        </ul>
+      </form>
+    </nav>
+
+    <div class="container-fluid h-100">
+      <div class="row panel">
+        <!--left panel-->
+        <div class="col-sm-6 h-100 sticky-top py-5" id="left">
+          <label class="col-form-label" for="input">1. Sample Images</label>
+          <medium class="form-text text-muted">Click on sample image to try.</medium><br>
+          {% for img_src in samples %}
+          <img class="sample_img sample-img rounded border" src="{{img_src[8:]}}" height="165" width="165"/>
+          {% endfor %}
+
+          <hr/>
+
+          <label class="col-form-label" for="inputFile">2. Upload</label>
+          <medium class="form-text text-muted">Upload your own image (jpg or png).</medium><br>
+          <form id="predict" method="post" enctype="multipart/form-data" action="upload">
+              <input class="form-control-file" id="img" name="file" type="file" accept=".jpeg,.jpg,.png"/>
+              <br>
+              <input class="btn btn-primary" type="submit" value="Submit"/>
+          </form>
+        </div>
+        <!--right panel-->
+        <div class="col-sm-6 py-5">
+          <div class="row">
+
+
+            <div class="col-sm-6 py-5">
+              <div class="status-area">
+                <div class="img-hidden"></div>
+                <!--<canvas id="img-canvas" width="300" height="300">-->
+              </div>
             </div>
+
+            <div class="col-sm-6 py-5">
+              <div class="status-area">
+                <span class="status"></span>
+              </div>
+            </div>
+
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <strong>Disclamier: </strong>Uploaded images are the responsibility of their respective parties. This tool is for demostration of PyTorch + FastAI + Flask implementation only. It does not replace professional medical advice.
+            </div>
+
+          </div>
         </div>
 
-        <div class="container">
-            <h3>Or upload image:</h3>
-            <form id="predict" method="post" enctype="multipart/form-data" action="upload">
-                <input class="btn btn-warning" id="img" name="file" type="file" accept=".jpeg,.jpg,.png"/>
-                <input class="btn btn-danger" type="submit" value="Submit"/>
-            </form>
+      </div>
+    </div>
 
-            <hr />
-            <div class="row">
-                <div class="col-sm pull-left">
-                    <div class="img-hidden" style="display:none"></div>
-                    <canvas id="img-canvas" width="500" height="500" >
-                </div>
-                <div class="col-sm pull-right">
-                    <div class="status-area">
-                        <span class="status"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <footer>
-            <div class="references container">
-                <a class="github-button" href="https://github.com/zeochoy/skinapp" data-icon="octicon-star" data-show-count="true" aria-label="Star daveluo/cocoapp on GitHub">Star</a>
-                <span class="view-container">
-                    <a href="https://github.com/zeochoy/skinapp" target="_blank">View source on Github</a>
-                </span>
-                <span>Uploaded images are the responsibility of their respective parties.</span>
-            </div>
-        </footer>
-
-    </body>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  </body>
 </html>

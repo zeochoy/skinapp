@@ -3,7 +3,9 @@ $(document).ready(function(){
     var $status = $('.status');
     var results = {
         cat: [],
-        prob: []
+        prob: [],
+        bprob: [],
+        mprob: []
     };
 
     $('#img').change(function(event) {
@@ -15,13 +17,13 @@ $(document).ready(function(){
             var fileReader = new FileReader();
             fileReader.onload = function(event) {
                 $('.img-hidden').html(
-                    `<img id='loaded-img' src='${event.target.result}'/>`
-                );
+                    `<img class="rounded border loaded-img" id='loaded-img' src='${event.target.result}' height="300" width="300"/>`
+                    );
                 var c = document.getElementById("img-canvas");
                 var ctx = c.getContext("2d");
                 var img = document.getElementById("loaded-img");
                 img.addEventListener("load", function(e) {
-                ctx.drawImage(img,0,0, 500, 500);
+                ctx.drawImage(img,0,0, 300, 300);
                 });
             }
             fileReader.readAsDataURL(obj.files[0]);
@@ -34,6 +36,9 @@ $(document).ready(function(){
         if ($('#img')[0].files.length === 0) {
             return false;
         }
+
+        // remove active class
+        $(".sample_img").removeClass("active");
 
         var imageData = new FormData($(this)[0]);
         console.log($(this)[0]);
@@ -57,16 +62,25 @@ $(document).ready(function(){
                 } else {
                     results["cat"] = responseData["cat"];
                     results["prob"] = responseData["prob"];
-                    let preData = JSON.stringify(responseData, null, '\t');
+                    results["bprob"] = responseData["bprob"];
+                    results["mprob"] = responseData["mprob"];
+                    let cat = results["cat"]
+                    let prob = results["prob"].toFixed(2)
+                    let bprob = results["bprob"].toFixed(0)
+                    let mprob = results["mprob"].toFixed(0)
                     $status.html(
                         `<span class='result success'>Results</span>
-                         <pre>${preData}</pre>`
+                         <span class='result-content'>${prob}% ${cat}</span>
+                         <div class="progress">
+                         <div class="progress-bar bg-success" role="progressbar" style="width: ${bprob}%" aria-valuenow="${bprob}" aria-valuemin="0" aria-valuemax="100"></div>
+                         <div class="progress-bar bg-danger" role="progressbar" style="width: ${mprob}%" aria-valuenow="${mprob}" aria-valuemin="0" aria-valuemax="100"></div>
+                         </div>`
                     );
                  }
             },
             error: function() {
                 $status.html(
-                    `<span class='eval'>Something went wrong, try again later.</span>`
+                    `<span class='eval failure'>Something went wrong, try again later.</span>`
                 );
             }
         });
@@ -95,13 +109,13 @@ $(document).ready(function(){
             reader.onload =  function(e){
                 // console.log('DataURL:', e.target.result);
                 $('.img-hidden').html(
-                    `<img id='loaded-img' src='${e.target.result}'/>`
+                    `<img class="rounded border loaded-img" id='loaded-img' src='${e.target.result}' height="300" width="300"/>`
                     );
-                var c = document.getElementById("img-canvas");
-                var ctx = c.getContext("2d");
-                var img = document.getElementById("loaded-img");
+                //var c = document.getElementById("img-canvas");
+                //var ctx = c.getContext("2d");
+                //var img = document.getElementById("loaded-img");
                 img.addEventListener("load", function(e) {
-                    ctx.drawImage(img,0,0, 500, 500);
+                    ctx.drawImage(img, 0,0, 300, 300);
                 });
 
                 // blob into form data
@@ -109,6 +123,10 @@ $(document).ready(function(){
                 var fd = new FormData();
                 fd.set('file', blob);
                 // console.log(formD);
+
+                $status.html(
+                    `<span class='eval'>Evaluating...</span>`
+                );
 
                 $.ajax({
                     url: '/predict',
@@ -127,16 +145,25 @@ $(document).ready(function(){
                         } else {
                             results["cat"] = responseData["cat"];
                             results["prob"] = responseData["prob"];
-                            let preData = JSON.stringify(responseData, null, '\t');
+                            results["bprob"] = responseData["bprob"];
+                            results["mprob"] = responseData["mprob"];
+                            let cat = results["cat"]
+                            let prob = results["prob"].toFixed(2)
+                            let bprob = results["bprob"].toFixed(0)
+                            let mprob = results["mprob"].toFixed(0)
                             $status.html(
                                 `<span class='result success'>Results</span>
-                                 <pre>${preData}</pre>`
+                                 <span class='result-content'>${prob}% ${cat}</span>
+                                 <div class="progress">
+                                 <div class="progress-bar bg-success" role="progressbar" style="width: ${bprob}%" aria-valuenow="${bprob}" aria-valuemin="0" aria-valuemax="100"></div>
+                                 <div class="progress-bar bg-danger" role="progressbar" style="width: ${mprob}%" aria-valuenow="${mprob}" aria-valuemin="0" aria-valuemax="100"></div>
+                                 </div>`
                             );
                          }
                     },
                     error: function() {
                         $status.html(
-                            `<span class='eval'>Something went wrong, try again later.</span>`
+                            `<span class='eval failure'>Something went wrong, try again later.</span>`
                         );
                     }
                 });

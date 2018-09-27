@@ -420,18 +420,30 @@ def preproc_img(img):
     trans_img = val_tfm(img)
     return Variable(torch.FloatTensor(trans_img)).unsqueeze_(0)
 
-def get_predictions(img):
-    img_t = preproc_img(img)
+def get_predictions(img, n=4):
     model  = load_model()
+    model.eval()
+
+    #img_t = preproc_img(img)
 
     #make predictions
-    model.eval()
-    res = model(img_t)
-    probs = np.exp(to_np(res))
-    preds = int(np.argmax(probs, axis=1))
+    #res = model(img_t)
+    probs = []
+    for i in range(n):
+        img_t = preproc_img(img)
+        tmp = model(img_t)
+        probs.append(list(np.exp(to_np(tmp))))
+
+    avg_probs = np.mean(np.array(probs), axis=0)
+    #probs = np.exp(np.array(res))
+    pred = int(np.argmax(avg_probs, axis=1))
 
     cat_dict = {0:'benign', 1:'malignant'}
-    return {"cat":cat_dict[preds], "prob":np.amax(probs)*100}
+    cat = cat_dict[pred]
+    prob = avg_probs[0][pred]*100
+    bprob = avg_probs[0][0]*100
+    mprob = avg_probs[0][1]*100
+    return {"cat":cat, "prob":prob, "bprob":bprob, "mprob":mprob}
 
 def load_model():
     dst = app.config['MODEL_FILE']
