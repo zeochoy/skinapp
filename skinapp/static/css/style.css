@@ -1,6 +1,6 @@
 .active-img {
-    outline: 5px solid #007bff;
-    outline-offset:-5px;
+    outline:3px solid #007bff;
+    outline-offset:-3px;
 }
 
 #img {
@@ -13,8 +13,8 @@
 
 .loaded-img {
     padding:5px;
-    max-width:400px;
-    max-height:400px;
+    max-width:300px;
+    max-height:300px;
     border-radius:5px;
     border:0px solid #007bff;
 }
@@ -23,13 +23,7 @@
     padding:0px;
 }
 
-
-.panel {
-    margin:30px 0px;
-}
-
 .status-area {
-    margin:50px 0px;
 }
 
 .result {
@@ -67,21 +61,17 @@
     text-align:center;
 }
 
-@media (max-width:447px) {
-    form input {
-        width:100%;
-    }
-    input:first-child {
-        margin:10px 0px 5px 0px;
-    }
-    input:last-child {
-        margin:5px 0px 10px 0px;
-    }
-    .loaded-img {
-        max-width:300px;
-        max-height:300px;
-    }
-    .recent {
-        margin:5px 5px;
-    }
+.loader {
+   border: 6px solid #f3f3f3;
+   border-top: 6px solid #007bff;
+   border-radius: 50%;
+   width: 50px;
+   height: 50px;
+   animation: spin 1s linear infinite;
+   text-align:center;
+}
+
+@keyframes spin {
+   0% { transform: rotate(0deg); }
+   100% { transform: rotate(360deg); }
 }

@@ -24,16 +24,16 @@
       <form class="form-inline my-2 my-lg-0">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="http://github.com/zeochoy/skinapp"><i class="fab fa-github"></i> Github</a>
+            <a target=”_blank” class="nav-link" href="http://github.com/zeochoy/skinapp"><i class="fab fa-github"></i> Github</a>
           </li>
         </ul>
       </form>
     </nav>
 
-    <div class="container-fluid" style="margin-top:60px">
+    <div class="container-fluid" style="margin-top:100px">
       <div class="row">
         <!--left panel-->
-        <div class="col-sm-6 sticky-top py-5" id="left">
+        <div class="col-lg-4" id="left" style="max-width:500px">
           <ul class="nav nav-tabs">
             <li class="nav-item">
               <a class="nav-link active show" data-toggle="tab" href="#sample-tab">Sample Images</a>
@@ -47,7 +47,7 @@
               <br>
               <medium class="form-text text-muted">Click on sample image to try.</medium><br>
               {% for img_src in samples %}
-              <img class="sample_img sample-img rounded border" src="{{img_src[8:]}}" height="165" width="165"/>
+              <img class="sample_img sample-img rounded border" src="{{img_src[8:]}}" height="100" width="100"/>
               {% endfor %}
             </div>
             <div class="tab-pane fade" id="upload-tab">
@@ -68,23 +68,22 @@
         </div>
 
         <!--right panel-->
-        <div class="col-sm-6 py-5">
-          <div class="row">
-            <div class="col-sm-6 py-5">
-              <div class="status-area">
-                <div class="img-hidden"></div>
-              </div>
-            </div>
-
-            <div class="col-sm-6 py-5">
-              <div class="status-area">
-                <span class="status"></span>
-              </div>
+          <div class="col-lg-4" style="max-width:350px">
+            <div class="status-area">
+              <div class="img-hidden" style="margin-top:90px;"></div>
             </div>
           </div>
-        </div>
+
+          <div class="col-lg-4" style="max-width:400px">
+            <div class="status-area"  style="margin-top:100px; margin-bottom:30px;">
+              <span class="status"></span>
+            </div>
+          </div>
+
         <!--right panel-->
+
       </div>
     </div>
+
   </body>
 </html>

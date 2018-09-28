@@ -28,9 +28,10 @@ malignant | 39 | 183
 
 ## Quick-start - run it locally
 1. Clone this repo, `cd` to the directory.
-2. Create virtual environment with conda `conda env create`.
-3. Open the terminal, run `python run.py`
-4. View at http://localhost:5000.
+2. Download the [model weights](https://drive.google.com/uc?export=download&id=1K5DX2BL0k2naC47J8yfQFDMGp9EOKSAc) into `$YOUR_PATH/model`.
+3. Create virtual environment with conda `conda env create -f environment.yml`.
+4. Open the terminal, run `python run.py`.
+5. View at http://localhost:5000.
 
 ## Acknowledgement
 * https://github.com/daveluo/cocoapp

@@ -43,7 +43,7 @@ $(document).ready(function(){
         var imageData = new FormData($(this)[0]);
         console.log($(this)[0]);
         $status.html(
-            `<span class='eval'>Evaluating...</span>`
+            `<div class="loader"></div>`
         );
 
         $.ajax({
@@ -69,12 +69,16 @@ $(document).ready(function(){
                     let bprob = results["bprob"].toFixed(0)
                     let mprob = results["mprob"].toFixed(0)
                     $status.html(
-                        `<span class='result success'>Results</span>
-                         <span class='result-content'>${prob}% ${cat}</span>
-                         <div class="progress">
-                         <div class="progress-bar bg-success" role="progressbar" style="width: ${bprob}%" aria-valuenow="${bprob}" aria-valuemin="0" aria-valuemax="100"></div>
-                         <div class="progress-bar bg-danger" role="progressbar" style="width: ${mprob}%" aria-valuenow="${mprob}" aria-valuemin="0" aria-valuemax="100"></div>
-                         </div>`
+                        `<div class="card block border-light" style="min-width:15rem; max-width:20rem">
+                          <div class="card-header result">Result</div>
+                          <div class="card-body">
+                            <span class='result-content'>${prob}% ${cat}</span>
+                            <div class="progress">
+                              <div class="progress-bar bg-success" role="progressbar" style="width: ${bprob}%" aria-valuenow="${bprob}" aria-valuemin="0" aria-valuemax="100"></div>
+                              <div class="progress-bar bg-danger" role="progressbar" style="width: ${mprob}%" aria-valuenow="${mprob}" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                          </div>
+                        </div>`
                     );
                  }
             },
@@ -109,8 +113,7 @@ $(document).ready(function(){
             reader.onload =  function(e){
                 // console.log('DataURL:', e.target.result);
                 $('.img-hidden').html(
-                    `<img class="rounded border loaded-img shadow" id='loaded-img' src='${e.target.result}' height="300" width="300"/>`
-                    );
+                    `<img class="rounded border loaded-img shadow" id='loaded-img' src='${e.target.result}' height="300" width="300"/>`);
                 //var c = document.getElementById("img-canvas");
                 //var ctx = c.getContext("2d");
                 //var img = document.getElementById("loaded-img");
@@ -125,7 +128,7 @@ $(document).ready(function(){
                 // console.log(formD);
 
                 $status.html(
-                    `<span class='eval'>Evaluating...</span>`
+                    `<div class="loader"></div>`
                 );
 
                 $.ajax({
@@ -152,12 +155,16 @@ $(document).ready(function(){
                             let bprob = results["bprob"].toFixed(0)
                             let mprob = results["mprob"].toFixed(0)
                             $status.html(
-                                `<span class='result success'>Results</span>
-                                 <span class='result-content'>${prob}% ${cat}</span>
-                                 <div class="progress">
-                                 <div class="progress-bar bg-success" role="progressbar" style="width: ${bprob}%" aria-valuenow="${bprob}" aria-valuemin="0" aria-valuemax="100"></div>
-                                 <div class="progress-bar bg-danger" role="progressbar" style="width: ${mprob}%" aria-valuenow="${mprob}" aria-valuemin="0" aria-valuemax="100"></div>
-                                 </div>`
+                                `<div class="card block border-light" style="min-width:15rem; max-width:20rem">
+                                  <div class="card-header result">Result</div>
+                                  <div class="card-body">
+                                    <span class='result-content'>${prob}% ${cat}</span>
+                                    <div class="progress">
+                                      <div class="progress-bar bg-success" role="progressbar" style="width: ${bprob}%" aria-valuenow="${bprob}" aria-valuemin="0" aria-valuemax="100"></div>
+                                      <div class="progress-bar bg-danger" role="progressbar" style="width: ${mprob}%" aria-valuenow="${mprob}" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                  </div>
+                                </div>`
                             );
                          }
                     },

@@ -449,12 +449,4 @@ def load_model():
     dst = app.config['MODEL_FILE']
     model = get_skinmodel()
     model.load_state_dict(torch.load(dst))
-    #if os.path.isfile(dst):
-    #    model = torch.load(dst)
-    #else:
-    #    dl_url = 'https://xxx'
-    #    with urlopen(dl_url) as u, NamedTemporaryFile(delete=False) as f:
-    #        f.write(u.read())
-    #        shutil.move(f.name, dst)
-    #    model = torch.load(dst)
     return model
