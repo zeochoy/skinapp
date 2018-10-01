@@ -68,7 +68,7 @@ class SkinModel():
         #self.top_model = nn.Sequential(*layers)
 
         layers += [nn.BatchNorm1d(num_features=4096), nn.Dropout(p=0.25), nn.Linear(in_features=4096, out_features=512), nn.ReLU()]
-        layers += [nn.BatchNorm1d(num_features=512), nn.Dropout(p=0.5), nn.Linear(in_features=512, out_features=self.c), nn.LogSoftmax()]
+        layers += [nn.BatchNorm1d(num_features=512), nn.Dropout(p=0.5), nn.Linear(in_features=512, out_features=self.c), nn.LogSoftmax(dim=1)]
         self.model = nn.Sequential(*layers)
 
 def get_skinmodel():

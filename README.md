@@ -1,5 +1,7 @@
 # Skinapp - Skin Lesion Detection Flask App Demo
 
+Demo: http://bit.ly/skinapp-demo
+
 #### Dataset:
 HAM10000 from ISIC archive
 
